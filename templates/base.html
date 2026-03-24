@@ -12,7 +12,12 @@
     {% endblock %}
 
     {% if user.is_authenticated %}
-        <p>vous etes connectez en tant que {{request.user}} <a href="{% url 'logout' %}">Se Déconnecter</a></p>
+        <p>Vous êtes connecté en tant que {{ request.user }}</p>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Se Déconnecter</button>
+    </form>
+     <p>Voulez-vous <a href="{% url 'password_change' %}">changer votre mot de passe ? </a></p>
     {% endif %}
 </body>
 </html>
