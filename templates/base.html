@@ -8,6 +8,11 @@
 <body>
     <h1>FotoBlog</h1>
     {% block content %}
+    
     {% endblock %}
+
+    {% if user.is_authenticated %}
+        <p>vous etes connectez en tant que {{request.user}} <a href="{% url 'logout' %}">Se Déconnecter</a></p>
+    {% endif %}
 </body>
 </html>

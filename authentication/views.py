@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 # Create your views here.
@@ -22,3 +22,7 @@ def login_view(request):
                 message = 'Identifiants invalides.'
 
     return render(request, 'authentication/login.html', context={'form': form, 'message': message})
+
+def logout_user(request):
+    logout(request)
+    return(redirect('login'))
