@@ -1,4 +1,4 @@
-from django import forms
+"""from django import forms
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -10,4 +10,4 @@ class LoginForm(forms.Form):
         max_length=63,
         widget=forms.PasswordInput,
         label='Mot de passe')
-    
+    """

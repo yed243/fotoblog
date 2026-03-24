@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm
+#from .forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import View
@@ -24,11 +24,14 @@ from django.views.generic import View
 
     return render(request, 'authentication/login.html', context={'form': form, 'message': message})
 """
-
+##########################################################
+"""
 def logout_user(request):
     logout(request)
     return(redirect('login'))
-
+"""
+###################################################################
+"""
 # utilisation de View base sur les classes
 class LoginView(View):
     template_name = 'authentication/login.html'
@@ -53,3 +56,4 @@ class LoginView(View):
             else:
                 message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
+"""

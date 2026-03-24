@@ -18,12 +18,21 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views
 import blog.views
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.LoginView.as_view(), name='login'),
-    path('logout/', views.logout_user,name= 'logout'),
+   # path('', views.LoginView.as_view(), name='login'),
+   #utilisation de vue generiques
+   path('', LoginView.as_view(
+       template_name='authentication/login.html',
+       redirect_authenticated_user=True
+   ), name='login'),
+   path('logout/', LogoutView.as_view(), name='logout'),
+   #utilisation de vue basées sur les fonctions
+   # path('logout/', views.logout_user,name= 'logout'),
     path('home/', blog.views.home, name='home'),
 
 ]
