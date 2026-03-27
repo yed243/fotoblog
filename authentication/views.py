@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import View
+from .forms import SignUpForm
 
 # Create your views here.
 """def login_view(request):
@@ -57,3 +58,14 @@ class LoginView(View):
                 message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
 """
+
+def signup_view(request):
+    form = SignUpForm()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.')
+            login(request, user)
+            return redirect('login')
+    return render(request, 'authentication/signup.html', context={'form': form})

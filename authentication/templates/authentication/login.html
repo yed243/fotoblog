@@ -7,4 +7,8 @@
         {{ form.as_p }}
         <button type="submit">Connexion</button>
     </form>
+    <div class="link">
+        <p>Pas encore de compte? <a href="{% url 'signup' %}">S'inscrire</a></p>
+    </div>
+
 {% endblock %}

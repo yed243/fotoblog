@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-#from authentication import views
+from authentication import views
 import blog.views
 from django.contrib.auth.views import LoginView, LogoutView,PasswordChangeView, PasswordChangeDoneView
 
@@ -42,5 +42,6 @@ urlpatterns = [
    #utilisation de vue basées sur les fonctions
    # path('logout/', views.logout_user,name= 'logout'),
     path('home/', blog.views.home, name='home'),
+    path('signup/', views.signup_view, name='signup'),
 
 ]
