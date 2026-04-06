@@ -46,7 +46,8 @@ urlpatterns = [
    # path('logout/', views.logout_user,name= 'logout'),
     path('home/', blog.views.home, name='home'),
     path('signup/', views.signup_view, name='signup'),
-    path('phtoto/upload/', blog.views.photo_upload, name='photo_upload')
+    path('phtoto/upload/', blog.views.photo_upload, name='photo_upload'),
+    path('profile-photo/', views.upload_profile_photo, name='upload_profile_photo')
 
 ]
 

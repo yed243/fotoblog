@@ -1,23 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>FotoBlog</title>
 </head>
-<body>
-    <h1>FotoBlog</h1>
-    {% block content %}
+<body> 
     
-    {% endblock %}
-
     {% if user.is_authenticated %}
-        <p>Vous êtes connecté en tant que {{ request.user }}</p>
+    <div class="sidebar">
+    <h1>FotoBlog</h1>
+
+        <p>bonjour  {{ request.user }}</p>
+        {% if user.profile_photo %}
+        <img src="{{ user.profile_photo.url }}" alt="Profile Photo" class="avatar">
+        {% else %}
+        <img src="{% static 'img/default_profile.png' %}" alt="" class="avatar">
+        {% endif %}
+        
+        <p><a href="{% url 'home' %}">Accueil</a></p>
+        <p><a href="{% url 'photo_upload'%}">telecharger une photo</a></p>
+        <p><a href="{% url 'upload_profile_photo' %}">Modifier la photo de profil</a></p>
+        <p><a href="{% url 'password_change' %}">Changer votre mot de passe</a></p>
+
+
+    <p>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button type="submit">Se Déconnecter</button>
+        <button type="submit" class="logout-btn">Se Déconnecter</button>
     </form>
-     <p>Voulez-vous <a href="{% url 'password_change' %}">changer votre mot de passe ? </a></p>
+</p>
+
+     
+    
     {% endif %}
+    </div>
+    <div class="main">
+        {% block content %}
+    
+    {% endblock %}
+    </div>
 </body>
 </html>

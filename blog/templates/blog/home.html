@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Bienvenue sur FotoBlog</h2>
-    <h2>Photo</h2>
-    {% for photo in photos %}
-        <div>
-            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="300">
-            <p>{{ photo.caption }}</p>
-        </div>
-    {% endfor %}
-    <p>vous etes connecté</p>
+    <div class="container">
+        <h1>Bienvenue sur FotoBlog</h1>
+        
+        <section class="photos-section">
+            <h2>Photos</h2>
+            <div class="photos-grid">
+                {% for photo in photos %}
+                    <div class="photo-card">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" class="photo-image">
+                        <p class="photo-caption">{{ photo.caption }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <p class="status">✓ Vous êtes connecté</p>
+    </div>
 {% endblock %}
