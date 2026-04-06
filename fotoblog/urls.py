@@ -19,6 +19,9 @@ from django.urls import path
 from authentication import views
 import blog.views
 from django.contrib.auth.views import LoginView, LogoutView,PasswordChangeView, PasswordChangeDoneView
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 
 
@@ -43,5 +46,9 @@ urlpatterns = [
    # path('logout/', views.logout_user,name= 'logout'),
     path('home/', blog.views.home, name='home'),
     path('signup/', views.signup_view, name='signup'),
+    path('phtoto/upload/', blog.views.photo_upload, name='photo_upload')
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import View
 from .forms import SignUpForm
+from .forms import UploadProfilePhotoForm
 
 # Create your views here.
 """def login_view(request):
@@ -69,3 +70,15 @@ def signup_view(request):
             login(request, user)
             return redirect('login')
     return render(request, 'authentication/signup.html', context={'form': form})
+
+def upload_profile_photo(request):
+    form = UploadProfilePhotoForm(instance=request.user)
+    if request.method == 'POST':
+        form = UploadProfilePhotoForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Votre photo de profil a été mise à jour avec succès.')
+            return redirect('home')
+    else:
+        form = UploadProfilePhotoForm(instance=request.user)
+    return render(request, 'authentication/upload_profile_photo.html', {'form': form})

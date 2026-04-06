@@ -92,6 +92,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'authentication.validators.ContainsLetterValidator',
     },
     {
+        'NAME': 'authentication.validators.ContainsDigitValidator',
+    },
+    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
             'min_length': 8,
@@ -122,3 +125,5 @@ LOGIN_URL = 'login'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.joinpath('media')
