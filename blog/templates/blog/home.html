@@ -17,4 +17,15 @@
         
         <p class="status">✓ Vous êtes connecté</p>
     </div>
+    <h2>Blogs</h2>
+    <div class="grid-container">
+        {% for blog in blogs %}
+        <div class="post">
+            <a href="{% url 'view_blog' blog.id %}">
+                <h4>Billet : {{ blog.title }}</h4>
+                <img src="{{ blog.photo.image.url }}" alt="{{ blog.photo.caption }}" class="post-image">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
